@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta SEO Tags -->
+    <title>Dr. Jorge Martínez Guzmán | Ortodoncia & Odontopediatría High-Tech Guadalajara</title>
+    <meta name="description" content="Especialista en Ortodoncia, Odontopediatría y Ortopedia Maxilar en Guadalajara. Odontología digital de precisión, alineadores invisibles y atención especializada sin dolor.">
+    <meta name="keywords" content="Ortodoncia Guadalajara, Dentista Justo Sierra, Odontopediatria, Brackets invisibles, Ortopedia Maxilar, Cirujano Dentista Jorge Martinez Guzman">
+    <meta name="author" content="Dr. Jorge Martínez Guzmán">
+    <meta property="og:title" content="Dr. Jorge Martínez Guzmán | Clínica Dental Premium High-Tech">
+    <meta property="og:description" content="Transforma tu sonrisa con la más alta tecnología clínica en Guadalajara. Reserva tu diagnóstico digital interactivo.">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    
+    <!-- Libraries for Big Tech Animations (Tailwind, Three.js, GSAP, Canvas Confetti) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#03121F',      /* Deep Cyber Navy */
+                            surface: '#0A1E30',   /* Glassy Card Navy */
+                            accent: '#00D2FF',    /* Electric Cyan Tech */
+                            primary: '#0066FF',   /* High-Tech Blue */
+                            silver: '#94A3B8',    /* Metallic Silver Accent */
+                            glow: '#00F0FF',      /* Glow Neon Blue */
+                            lightBg: '#F8FAFC'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        tech: ['Space Grotesk', 'sans-serif']
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 3s infinite ease-in-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { opacity: 0.4, transform: 'scale(1)' },
+                            '50%': { opacity: 0.9, transform: 'scale(1.05)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Custom Scrollbar and Big Tech Glassmorphism CSS */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #03121F;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0066FF;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00D2FF;
+        }
+
+        .glass-panel {
+            background: rgba(10, 30, 48, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 210, 255, 0.15);
+        }
+
+        .glass-panel-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-panel-hover:hover {
+            transform: translateY(-5px) scale(1.01);
+            border-color: rgba(0, 210, 255, 0.5);
+            box-shadow: 0 20px 40px -15px rgba(0, 210, 255, 0.25);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #FFFFFF 0%, #A5F3FC 50%, #00D2FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-cyan {
+            background: linear-gradient(135deg, #00D2FF 0%, #0066FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bg-cyber-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        .glow-button {
+            position: relative;
+            isolation: isolate;
+        }
+        .glow-button::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(90deg, #00D2FF, #0066FF, #00F0FF);
+            border-radius: 9999px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            filter: blur(10px);
+        }
+        .glow-button:hover::before {
+            opacity: 0.8;
+        }
+
+        /* Before/After Slider handle */
+        .slider-handle {
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-100 font-sans selection:bg-brand-accent selection:text-brand-dark overflow-x-hidden antialiased bg-cyber-grid">
+
+    <!-- ================= PAGE SPINNER / PRELOADER ================= -->
+    <div id="preloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-brand-dark transition-opacity duration-700">
+        <div class="relative flex items-center justify-center">
+            <!-- Quantum High Tech Spinner Rings -->
+            <div class="w-32 h-32 rounded-full border-2 border-brand-accent/20 border-t-brand-accent animate-spin"></div>
+            <div class="absolute w-24 h-24 rounded-full border-2 border-brand-primary/20 border-b-brand-glow animate-spin-slow"></div>
+            <div class="absolute flex flex-col items-center justify-center">
+                <span class="font-tech text-xl font-bold tracking-widest text-white">JMG</span>
+                <span class="text-[10px] text-brand-accent tracking-widest uppercase">Dental Tech</span>
+            </div>
+        </div>
+        <div class="mt-6 flex flex-col items-center space-y-2">
+            <div class="w-48 h-1 bg-slate-800 rounded-full overflow-hidden">
+                <div id="loader-bar" class="w-0 h-full bg-gradient-to-r from-brand-primary to-brand-accent transition-all duration-300"></div>
+            </div>
+            <p class="font-tech text-xs text-slate-400 tracking-wider">CARGANDO TECNOLOGÍA DENTAL 3D...</p>
+        </div>
+    </div>
+
+    <!-- ================= HEADER / NAVBAR ================= -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="main-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="glass-panel rounded-full px-6 py-3 flex items-center justify-between shadow-2xl border border-white/10">
+                <!-- Brand Logo Area -->
+                <a href="#hero" class="flex items-center space-x-3 group">
+                    <div class="relative w-10 h-10 rounded-xl bg-gradient-to-br from-brand-accent to-brand-primary flex items-center justify-center font-tech font-bold text-slate-900 shadow-lg shadow-brand-accent/20 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-tooth text-xl text-white"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-tech text-lg font-extrabold tracking-tight text-white leading-none">DR. JORGE MARTÍNEZ</span>
+                        <span class="text-[10px] text-brand-accent font-semibold tracking-widest uppercase mt-0.5">Cirujano Dentista • Céd. 5183747</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                    <a href="#especialidades" class="hover:text-brand-accent transition-colors">Especialidades</a>
+                    <a href="#tecnologia" class="hover:text-brand-accent transition-colors">Tecnología High-Tech</a>
+                    <a href="#casos" class="hover:text-brand-accent transition-colors">Casos Clínicos</a>
+                    <a href="#doctor" class="hover:text-brand-accent transition-colors">Trayectoria</a>
+                    <a href="#ubicacion" class="hover:text-brand-accent transition-colors">Contacto</a>
+                </div>
+
+                <!-- CTA Navigation Button (CTA 1) -->
+                <div class="hidden sm:block">
+                    <a href="#contacto" class="glow-button inline-flex items-center justify-center px-6 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase bg-gradient-to-r from-brand-primary to-brand-accent text-slate-950 hover:text-white transition-all shadow-lg hover:shadow-brand-accent/40 active:scale-95">
+                        <i class="fa-solid fa-calendar-check mr-2"></i>
+                        ¡Quiero Agendar Mi Diagnóstico!
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobile-menu-btn" aria-label="Abrir Menú" class="md:hidden text-slate-300 hover:text-white focus:outline-none p-2">
+                    <i class="fa-solid fa-bars-staggered text-2xl"></i>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel mx-4 mt-2 rounded-2xl p-6 border border-brand-accent/20 shadow-2xl transition-all duration-300">
+            <div class="flex flex-col space-y-4 font-medium text-slate-200">
+                <a href="#especialidades" class="mobile-link py-2 border-b border-slate-800 hover:text-brand-accent">Especialidades Clínicas</a>
+                <a href="#tecnologia" class="mobile-link py-2 border-b border-slate-800 hover:text-brand-accent">Alineación Digital</a>
+                <a href="#casos" class="mobile-link py-2 border-b border-slate-800 hover:text-brand-accent">Resultados Antes/Después</a>
+                <a href="#doctor" class="mobile-link py-2 border-b border-slate-800 hover:text-brand-accent">Acerca del Dr. Jorge</a>
+                <a href="#ubicacion" class="mobile-link py-2 border-b border-slate-800 hover:text-brand-accent">Ubicación y Horarios</a>
+                <a href="#contacto" class="mobile-link w-full text-center mt-4 py-3 rounded-xl font-bold bg-gradient-to-r from-brand-primary to-brand-accent text-slate-950 uppercase tracking-wider">
+                    ¡Quiero Agendar Mi Diagnóstico!
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= HERO SECTION (3D CANVAS ENTERPRISE WOW EFFECT) ================= -->
+    <section id="hero" class="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden">
+        <!-- Interactive 3D Canvas Background -->
+        <div id="hero-3d-container" class="absolute inset-0 z-0 opacity-80 cursor-grab active:cursor-grabbing"></div>
+
+        <!-- Glow Orbs BG Visual Effects -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-primary/20 rounded-full blur-[140px] pointer-events-none animate-pulse-glow"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-brand-accent/15 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Copy Text -->
+            <div class="lg:col-span-7 space-y-8">
+                <!-- Badge Enterprise -->
+                <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full glass-panel border-brand-accent/30 text-xs font-semibold text-brand-accent tracking-wider uppercase shadow-inner">
+                    <span class="w-2 h-2 rounded-full bg-brand-accent animate-ping"></span>
+                    <span>Odontología Digital de Alta Precisión • Guadalajara</span>
+                </div>
+
+                <!-- Main Title WOW Effect -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1]">
+                    Diseñamos la <br class="hidden sm:inline"/>
+                    <span class="text-gradient">Arquitectura Perfecta</span> <br/>
+                    de Tu Sonrisa.
+                </h1>
+
+                <p class="text-slate-300 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
+                    Especialistas en <strong class="text-white">Ortodoncia Avanzada</strong>, <strong class="text-white">Odontopediatría Sensible</strong> y <strong class="text-white">Ortopedia Maxilar</strong>. Fusionamos biotecnología, escaneo 3D y calidez humana para sonrisas perfectas sin dolor.
+                </p>
+
+                <!-- Value Props Micro Highlights -->
+                <div class="grid grid-cols-3 gap-3 pt-2 text-left">
+                    <div class="glass-panel p-3 rounded-xl border border-white/5">
+                        <div class="text-brand-accent font-bold text-lg font-tech">3D Scan</div>
+                        <div class="text-[11px] text-slate-400">Sin moldes molestos</div>
+                    </div>
+                    <div class="glass-panel p-3 rounded-xl border border-white/5">
+                        <div class="text-brand-accent font-bold text-lg font-tech">+18 Años</div>
+                        <div class="text-[11px] text-slate-400">Experiencia Clínica</div>
+                    </div>
+                    <div class="glass-panel p-3 rounded-xl border border-white/5">
+                        <div class="text-brand-accent font-bold text-lg font-tech">Cero Dolor</div>
+                        <div class="text-[11px] text-slate-400">Protocolo Ansiolítico</div>
+                    </div>
+                </div>
+
+                <!-- CTA Action Button (CTA 2 - Persuasive) -->
+                <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-5 pt-4">
+                    <a href="#contacto" class="glow-button w-full sm:w-auto text-center px-8 py-4 rounded-full font-extrabold text-sm uppercase tracking-wider bg-gradient-to-r from-brand-primary via-brand-accent to-brand-glow text-slate-950 hover:text-white transition-all transform hover:-translate-y-1 shadow-2xl shadow-brand-accent/30">
+                        <i class="fa-solid fa-sparkles mr-2"></i>
+                        Estoy Listo, Quiero Mi Evaluación Digital
+                    </a>
+                    <a href="https://wa.me/523312498855?text=Hola%20Dr.%20Jorge,%20me%20gustar%C3%ADa%20agendar%20una%20consulta%20de%20diagn%C3%B3stico" target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-4 rounded-full font-semibold text-sm glass-panel border border-brand-accent/40 text-brand-accent hover:bg-brand-accent/10 transition-all">
+                        <i class="fa-brands fa-whatsapp text-lg mr-2 text-green-400"></i>
+                        Consulta Directa WhatsApp
+                    </a>
+                </div>
+
+                <!-- Doctor Trust Micro Badge -->
+                <div class="flex items-center space-x-4 pt-2 justify-center md:justify-start">
+                    <div class="flex -space-x-2">
+                        <img class="w-10 h-10 rounded-full border-2 border-brand-accent" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Paciente satisfecho Dr Jorge Martinez">
+                        <img class="w-10 h-10 rounded-full border-2 border-brand-accent" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Paciente Invisalign Guadalajara">
+                        <img class="w-10 h-10 rounded-full border-2 border-brand-accent" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" alt="Paciente Ortodoncia">
+                    </div>
+                    <div class="text-xs text-slate-400 text-left">
+                        <div class="flex items-center text-amber-400">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span class="text-white font-bold ml-1">5.0 / 5.0</span>
+                        </div>
+                        <span>+2,500 Pacientes Felices en Guadalajara</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Visual Interactive HUD / Dynamic Card -->
+            <div class="lg:col-span-5 relative">
+                <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-brand-accent/30 relative overflow-hidden shadow-2xl animate-float">
+                    <!-- Tech Header inside card -->
+                    <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                        </div>
+                        <span class="font-tech text-xs text-brand-accent tracking-widest uppercase">INTERACTIVE SCANNER v4.2</span>
+                    </div>
+
+                    <!-- Holographic Bracket / Alignment Visual Element -->
+                    <div class="relative flex flex-col items-center justify-center py-8">
+                        <div class="w-36 h-36 sm:w-44 sm:h-44 rounded-full border-4 border-dashed border-brand-accent/40 animate-spin-slow flex items-center justify-center">
+                            <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-brand-primary/30 to-brand-accent/20 flex items-center justify-center backdrop-blur-md border border-brand-accent/50">
+                                <i class="fa-solid fa-teeth-open text-5xl text-brand-accent animate-pulse"></i>
+                            </div>
+                        </div>
+
+                        <!-- Bracket Tech Indicator Tags -->
+                        <div class="absolute -top-2 left-2 glass-panel px-3 py-1 rounded-lg text-[10px] font-tech text-slate-200 border border-brand-accent/30">
+                            <i class="fa-solid fa-check-double text-brand-accent mr-1"></i> Alineación Milimétrica
+                        </div>
+                        <div class="absolute bottom-2 right-2 glass-panel px-3 py-1 rounded-lg text-[10px] font-tech text-slate-200 border border-brand-accent/30">
+                            <i class="fa-solid fa-shield-halved text-brand-accent mr-1"></i> Ortopedia Maxilar 100%
+                        </div>
+                    </div>
+
+                    <!-- Live Consult Status -->
+                    <div class="mt-4 p-4 rounded-2xl bg-brand-dark/80 border border-white/10 flex items-center justify-between">
+                        <div>
+                            <div class="text-xs text-slate-400">Disponibilidad de Cita hoy:</div>
+                            <div class="text-sm font-bold text-green-400 flex items-center mt-0.5">
+                                <span class="w-2 h-2 rounded-full bg-green-400 animate-ping mr-2"></span>
+                                Turnos Disponibles en Consultorio
+                            </div>
+                        </div>
+                        <a href="#contacto" class="px-4 py-2 rounded-xl bg-brand-accent/20 text-brand-accent hover:bg-brand-accent hover:text-slate-950 text-xs font-bold transition-all">
+                            Agendar
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= METRICS / ENTERPRISE STATS ================= -->
+    <section class="py-12 relative z-20 border-y border-white/10 bg-brand-surface/40 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="space-y-1">
+                    <div class="text-3xl sm:text-5xl font-extrabold font-tech text-gradient-cyan counter" data-target="18">0</div>
+                    <div class="text-xs sm:text-sm text-slate-400 uppercase tracking-widest font-semibold">Años de Especialidad</div>
+                </div>
+                <div class="space-y-1">
+                    <div class="text-3xl sm:text-5xl font-extrabold font-tech text-gradient-cyan counter" data-target="2500">0</div>
+                    <div class="text-xs sm:text-sm text-slate-400 uppercase tracking-widest font-semibold">Sonrisas Diseñadas</div>
+                </div>
+                <div class="space-y-1">
+                    <div class="text-3xl sm:text-5xl font-extrabold font-tech text-gradient-cyan counter" data-target="99.8">0</div>
+                    <div class="text-xs sm:text-sm text-slate-400 uppercase tracking-widest font-semibold">% Satisfacción Pacientes</div>
+                </div>
+                <div class="space-y-1">
+                    <div class="text-3xl sm:text-5xl font-extrabold font-tech text-gradient-cyan counter" data-target="100">0</div>
+                    <div class="text-xs sm:text-sm text-slate-400 uppercase tracking-widest font-semibold">% Digital & Inodoro</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SPECIALTIES SECTION (UI/UX HIGH TECH CARDS) ================= -->
+    <section id="especialidades" class="py-28 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
+                <span class="text-brand-accent font-tech text-xs tracking-widest uppercase font-bold px-4 py-1.5 rounded-full glass-panel border border-brand-accent/20">
+                    Soluciones Clínicas Especializadas
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
+                    Tratamientos de <span class="text-gradient">Alta Tecnología</span>
+                </h2>
+                <p class="text-slate-400 text-base">
+                    Cada paciente requiere un análisis anatómico individual. Aplicamos tecnología digital para diagnósticos certeros, confort absoluto y resultados estéticos garantizados.
+                </p>
+            </div>
+
+            <!-- Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Card 1: Ortodoncia -->
+                <div class="glass-panel glass-panel-hover p-8 rounded-3xl relative flex flex-col justify-between group">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-30 transition-opacity">
+                        <i class="fa-solid fa-brackets-curly text-8xl text-brand-accent"></i>
+                    </div>
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-brand-primary/20 border border-brand-accent/30 flex items-center justify-center text-brand-accent text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-teeth"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3 font-tech">Ortodoncia Digital Avanzada</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            Correctores estéticos, brackets cerámicos de autoligado y alineadores invisibles. Corrección precisa de maloclusiones y alineamiento dental sin afectar tu estilo de vida.
+                        </p>
+                        <ul class="space-y-2.5 text-xs text-slate-300 mb-8">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-accent mr-2"></i> Brackets de zafiro y autoligado pasivo</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-accent mr-2"></i> Alineadores invisibles customizados</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-accent mr-2"></i> Reducción de tiempo de tratamiento</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="w-full py-3 rounded-xl border border-brand-accent/30 text-brand-accent hover:bg-brand-accent hover:text-slate-950 font-bold text-center text-xs tracking-wider uppercase transition-all">
+                        Saber Más de Ortodoncia
+                    </a>
+                </div>
+
+                <!-- Card 2: Odontopediatría -->
+                <div class="glass-panel glass-panel-hover p-8 rounded-3xl relative flex flex-col justify-between group border-brand-accent/40 shadow-xl shadow-brand-accent/5">
+                    <div class="absolute top-4 right-4 bg-brand-accent text-slate-950 text-[10px] font-extrabold tracking-widest px-3 py-1 rounded-full uppercase">
+                        Popular Familias
+                    </div>
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-brand-accent/20 border border-brand-accent/50 flex items-center justify-center text-brand-accent text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-child-reaching"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3 font-tech">Odontopediatría Amigable</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            Atención infantil especializada y empática. Creamos una experiencia sin traumas ni miedo para los niños, cuidando su salud bucal desde la primera infancia.
+                        </p>
+                        <ul class="space-y-2.5 text-xs text-slate-300 mb-8">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-accent mr-2"></i> Ambiente libre de ansiedad y dolor</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-accent mr-2"></i> Prevención de caries y selladores</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-accent mr-2"></i> Guía de crecimiento dental sano</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="w-full py-3 rounded-xl bg-gradient-to-r from-brand-primary to-brand-accent text-slate-950 font-bold text-center text-xs tracking-wider uppercase transition-all shadow-lg hover:shadow-brand-accent/30">
+                        Agendar Cita Infantil
+                    </a>
+                </div>
+
+                <!-- Card 3: Ortopedia Maxilar -->
+                <div class="glass-panel glass-panel-hover p-8 rounded-3xl relative flex flex-col justify-between group">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-30 transition-opacity">
+                        <i class="fa-solid fa-skull text-8xl text-brand-accent"></i>
+                    </div>
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-brand-primary/20 border border-brand-accent/30 flex items-center justify-center text-brand-accent text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-head-side-virus"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3 font-tech">Ortopedia Maxilar</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            Guiamos y corregimos el desarrollo óseo facial y mandibular en niños y jóvenes. Prevenimos cirugías complejas en la edad adulta corrigiendo la mordida a tiempo.
+                        </p>
+                        <ul class="space-y-2.5 text-xs text-slate-300 mb-8">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-accent mr-2"></i> Corrección de mordida cruzada / abierta</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-accent mr-2"></i> Expansión palatina no invasiva</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-accent mr-2"></i> Armonización del perfil facial</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="w-full py-3 rounded-xl border border-brand-accent/30 text-brand-accent hover:bg-brand-accent hover:text-slate-950 font-bold text-center text-xs tracking-wider uppercase transition-all">
+                        Consultar Ortopedia
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- CTA Center Row (CTA 3 - Persuasive) -->
+            <div class="mt-16 text-center">
+                <a href="#contacto" class="glow-button inline-flex items-center px-8 py-4 rounded-full font-bold text-sm tracking-wider uppercase bg-gradient-to-r from-brand-primary to-brand-accent text-slate-950 hover:text-white transition-all shadow-xl">
+                    <i class="fa-solid fa-calendar-plus mr-3"></i>
+                    ¡Haz Clic Aquí y Solicita Tu Diagnóstico Digital!
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= HIGH TECH FEATURE / BEFORE & AFTER COMPARISON INTERACTIVE ================= -->
+    <section id="casos" class="py-24 bg-brand-surface/30 relative border-y border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Details -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-brand-accent font-tech text-xs tracking-widest uppercase font-bold px-4 py-1.5 rounded-full glass-panel border border-brand-accent/20">
+                        Resultados Comprobables
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+                        Transformaciones <br/>
+                        <span class="text-gradient">Antes y Después</span>
+                    </h2>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Desliza el marcador interactivo para presenciar la precisión en la alineación y remodelación estética dental lograda en nuestros pacientes en Guadalajara.
+                    </p>
+                    
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 rounded-lg bg-brand-accent/20 text-brand-accent flex items-center justify-center font-bold text-sm">1</div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Escaneo Intraoral 3D</h4>
+                                <p class="text-slate-400 text-xs">Capturamos digitalmente tu dentadura sin pastas ni molestias.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 rounded-lg bg-brand-accent/20 text-brand-accent flex items-center justify-center font-bold text-sm">2</div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Simulación Virtual de Resultados</h4>
+                                <p class="text-slate-400 text-xs">Ves exactamente cómo quedará tu sonrisa antes de empezar.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Interactive Before/After Slider -->
+                <div class="lg:col-span-7">
+                    <div class="glass-panel p-4 rounded-3xl border border-brand-accent/30 shadow-2xl relative overflow-hidden">
+                        <div id="before-after-container" class="relative w-full h-80 sm:h-96 rounded-2xl overflow-hidden select-none cursor-ew-resize">
+                            <!-- After Image (Background) -->
+                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=80" alt="Sonrisa Perfecta Alineada Después" class="absolute inset-0 w-full h-full object-cover">
+                            <span class="absolute top-4 right-4 bg-brand-accent text-slate-950 font-tech font-extrabold text-xs px-3 py-1 rounded-full uppercase z-10 shadow-lg">DESPUÉS</span>
+
+                            <!-- Before Image (Clipped Foreground) -->
+                            <div id="before-image-wrap" class="absolute inset-0 w-1/2 overflow-hidden border-r-2 border-brand-accent">
+                                <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=80" alt="Dientes Desalineados Antes Ortodoncia" class="absolute top-0 left-0 max-w-none h-full object-cover">
+                                <span class="absolute top-4 left-4 bg-slate-900/90 text-white font-tech font-extrabold text-xs px-3 py-1 rounded-full uppercase z-10">ANTES</span>
+                            </div>
+
+                            <!-- Slider Divider Handle -->
+                            <div id="slider-handle" class="absolute top-0 bottom-0 left-1/2 -ml-4 w-8 flex items-center justify-center pointer-events-none z-20">
+                                <div class="w-8 h-8 rounded-full bg-brand-accent text-slate-950 flex items-center justify-center shadow-2xl slider-handle">
+                                    <i class="fa-solid fa-arrows-left-right text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-center text-xs text-slate-400 mt-3 font-tech uppercase tracking-wider">
+                            <i class="fa-solid fa-hand-pointer mr-1 text-brand-accent"></i> Mueve el cursor o desliza sobre la imagen para comparar
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= DOCTOR PROFILE SECTION ================= -->
+    <section id="doctor" class="py-28 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-brand-accent/20 relative overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Doctor Photo -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative rounded-2xl overflow-hidden border-2 border-brand-accent/40 shadow-2xl">
+                            <!-- High quality professional doctor portrait -->
+                            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80" alt="Dr Jorge Martinez Guzman Cirujano Dentista" class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent"></div>
+                            
+                            <div class="absolute bottom-4 left-4 right-4 glass-panel p-4 rounded-xl border border-white/10">
+                                <h4 class="font-bold text-white text-base">Dr. Jorge Martínez Guzmán</h4>
+                                <p class="text-xs text-brand-accent font-tech uppercase tracking-wider">Cirujano Dentista • Cédula Prof. 5183747</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Doctor Information -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <span class="text-brand-accent font-tech text-xs tracking-widest uppercase font-bold px-4 py-1.5 rounded-full glass-panel border border-brand-accent/20">
+                            Liderazgo Clínico y Excelencia
+                        </span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                            Pasión por la <span class="text-gradient">Salud Bucal y la Estética</span>
+                        </h2>
+                        
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            El <strong class="text-white">Dr. Jorge Martínez Guzmán</strong> es un profesional comprometido con la innovación constante en odontología. Especializado en Ortodoncia, Odontopediatría y Ortopedia Maxilar, combina técnicas clínicas modernas con una filosofía de atención cercana y libre de estrés.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="p-4 rounded-xl bg-brand-dark/60 border border-white/5">
+                                <i class="fa-solid fa-graduation-cap text-brand-accent text-xl mb-2"></i>
+                                <h5 class="text-white font-bold text-sm">Cédula Profesional</h5>
+                                <p class="text-xs text-slate-400">Registrado oficialmente bajo Céd. 5183747</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-brand-dark/60 border border-white/5">
+                                <i class="fa-solid fa-certificate text-brand-accent text-xl mb-2"></i>
+                                <h5 class="text-white font-bold text-sm">Actualización Continua</h5>
+                                <p class="text-xs text-slate-400">Certificado en Biomecánica y Alineadores Digitales</p>
+                            </div>
+                        </div>
+
+                        <!-- CTA Callout Doctor (CTA 4 - Persuasive) -->
+                        <div class="pt-4">
+                            <a href="#contacto" class="glow-button inline-flex items-center px-8 py-3.5 rounded-full font-extrabold text-xs tracking-widest uppercase bg-gradient-to-r from-brand-primary to-brand-accent text-slate-950 hover:text-white transition-all shadow-lg">
+                                <i class="fa-solid fa-user-doctor mr-2"></i>
+                                ¡Quiero Una Valoración con el Dr. Jorge!
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= LOCATION & MAP SECTION ================= -->
+    <section id="ubicacion" class="py-24 relative bg-brand-surface/20 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-brand-accent font-tech text-xs tracking-widest uppercase font-bold px-4 py-1.5 rounded-full glass-panel border border-brand-accent/20">
+                    Ubicación Estratégica
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold">Ubicación del Consultorio</h2>
+                <p class="text-slate-400 text-sm">Visítanos en nuestra zona céntrica en Guadalajara, Jalisco con fácil acceso y estacionamiento.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                <!-- Info Box -->
+                <div class="lg:col-span-5 glass-panel p-8 rounded-3xl border border-brand-accent/20 flex flex-col justify-between space-y-6">
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-accent/20 text-brand-accent flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-location-dot text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-base">Dirección</h4>
+                                <p class="text-slate-300 text-sm mt-1">Justo Sierra 2076-211<br>Col. Ladrón de Guevara, Guadalajara, Jal.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-accent/20 text-brand-accent flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-phone text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-base">Teléfonos Directos</h4>
+                                <p class="text-slate-300 text-sm mt-1">
+                                    Consultorio: <a href="tel:3316542450" class="text-brand-accent hover:underline">(33) 1654 2450</a><br>
+                                    Cel / WhatsApp: <a href="https://wa.me/523312498855" class="text-brand-accent hover:underline">331 249 8855</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-accent/20 text-brand-accent flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-base">Correo Electrónico</h4>
+                                <p class="text-slate-300 text-sm mt-1">george_jomagu@hotmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="https://maps.google.com/?q=Justo+Sierra+2076+Guadalajara" target="_blank" rel="noopener" class="w-full py-3.5 rounded-xl border border-brand-accent/40 text-brand-accent font-bold text-center text-xs tracking-wider uppercase hover:bg-brand-accent hover:text-slate-950 transition-all">
+                        <i class="fa-solid fa-map-location-dot mr-2"></i> Abrir en Google Maps
+                    </a>
+                </div>
+
+                <!-- Interactive Styled Map Iframe / Placeholder Visual -->
+                <div class="lg:col-span-7 glass-panel rounded-3xl overflow-hidden border border-brand-accent/20 min-h-[350px]">
+                    <iframe 
+                        title="Ubicación Consultorio Dr Jorge Martinez"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.172813583857!2d-103.37688482404558!3d20.68289898088015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ae1526d1d4ad%3A0x6b744ff8bf0eb921!2sC.%20Justo%20Sierra%202076%2C%20Ladr%C3%B3n%20de%20Guevara%2C%20Ladr%C3%B3n%20De%20Guevara%2C%2044600%20Guadalajara%2C%20Jal.!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx" 
+                        class="w-full h-full min-h-[350px] border-0 filter grayscale opacity-80 contrast-125 hover:grayscale-0 transition-all duration-500" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CONTACT FORM & WHATSAPP REDIRECT ================= -->
+    <section id="contacto" class="py-28 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-brand-accent/30 shadow-2xl relative overflow-hidden">
+                
+                <div class="text-center space-y-3 mb-10">
+                    <span class="text-brand-accent font-tech text-xs tracking-widest uppercase font-bold px-4 py-1.5 rounded-full glass-panel border border-brand-accent/20">
+                        Reserva Tu Turno Inmediato
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
+                        Agenda Tu <span class="text-gradient">Consulta Digital</span>
+                    </h2>
+                    <p class="text-slate-300 text-sm">Llena este formulario y serás redirigido directamente a nuestro WhatsApp oficial con tus datos pre-llenados para confirmación instantánea.</p>
+                </div>
+
+                <!-- Interactive Form -->
+                <form id="whatsapp-form" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Nombre Completo *</label>
+                            <input type="text" id="form-name" required placeholder="Ej. Ana María Gómez" class="w-full px-4 py-3.5 rounded-xl bg-brand-dark/80 border border-white/10 text-white focus:outline-none focus:border-brand-accent text-sm transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Teléfono de Contacto *</label>
+                            <input type="tel" id="form-phone" required placeholder="Ej. 33 1234 5678" class="w-full px-4 py-3.5 rounded-xl bg-brand-dark/80 border border-white/10 text-white focus:outline-none focus:border-brand-accent text-sm transition-colors">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Servicio de Interés *</label>
+                            <select id="form-service" required class="w-full px-4 py-3.5 rounded-xl bg-brand-dark/80 border border-white/10 text-slate-200 focus:outline-none focus:border-brand-accent text-sm transition-colors">
+                                <option value="Ortodoncia (Brackets / Alineadores)">Ortodoncia (Brackets / Alineadores)</option>
+                                <option value="Odontopediatría (Atención Niños)">Odontopediatría (Atención Infantil)</option>
+                                <option value="Ortopedia Maxilar">Ortopedia Maxilar</option>
+                                <option value="Limpieza y Diagnóstico General">Limpieza y Diagnóstico General</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Horario Preferido</label>
+                            <select id="form-time" class="w-full px-4 py-3.5 rounded-xl bg-brand-dark/80 border border-white/10 text-slate-200 focus:outline-none focus:border-brand-accent text-sm transition-colors">
+                                <option value="Mañana (9:00 AM - 1:00 PM)">Mañana (9:00 AM - 1:00 PM)</option>
+                                <option value="Tarde (3:00 PM - 7:00 PM)">Tarde (3:00 PM - 7:00 PM)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Mensaje o Síntomas (Opcional)</label>
+                        <textarea id="form-message" rows="3" placeholder="Platícanos brevemente qué deseas mejorar de tu sonrisa..." class="w-full px-4 py-3.5 rounded-xl bg-brand-dark/80 border border-white/10 text-white focus:outline-none focus:border-brand-accent text-sm transition-colors"></textarea>
+                    </div>
+
+                    <!-- Submit Button CTA 5 (Persuasive Final CTA) -->
+                    <button type="submit" class="glow-button w-full py-4 rounded-xl font-extrabold text-sm uppercase tracking-widest bg-gradient-to-r from-brand-primary via-brand-accent to-brand-glow text-slate-950 hover:text-white transition-all shadow-xl shadow-brand-accent/30 flex items-center justify-center space-x-3">
+                        <i class="fa-brands fa-whatsapp text-xl text-green-400"></i>
+                        <span>¡Estoy Listo, Confirmar Cita Por WhatsApp Directo!</span>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-brand-dark border-t border-white/10 py-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="space-y-4 md:col-span-2">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-accent to-brand-primary flex items-center justify-center font-tech font-bold text-slate-900">
+                            <i class="fa-solid fa-tooth text-white text-sm"></i>
+                        </div>
+                        <span class="font-tech text-lg font-bold text-white">DR. JORGE MARTÍNEZ GUZMÁN</span>
+                    </div>
+                    <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
+                        Cirujano Dentista • Cédula Profesional 5183747. Especialista en Ortodoncia, Odontopediatría y Ortopedia Maxilar en Guadalajara.
+                    </p>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold text-sm mb-4 font-tech uppercase tracking-wider">Enlaces Rápidos</h5>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><a href="#especialidades" class="hover:text-brand-accent transition-colors">Ortodoncia</a></li>
+                        <li><a href="#especialidades" class="hover:text-brand-accent transition-colors">Odontopediatría</a></li>
+                        <li><a href="#especialidades" class="hover:text-brand-accent transition-colors">Ortopedia Maxilar</a></li>
+                        <li><a href="#casos" class="hover:text-brand-accent transition-colors">Casos de Éxito</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold text-sm mb-4 font-tech uppercase tracking-wider">Contacto</h5>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Justo Sierra 2076-211, Col. Ladrón de Guevara, GDL.<br>
+                        Tel: (33) 1654 2450<br>
+                        Cel: 331 249 8855
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 space-y-4 sm:space-y-0">
+                <p>© <span id="year-span"></span> Dr. Jorge Martínez Guzmán. Todos los derechos reservados.</p>
+                <p class="font-tech">DISEÑO ENTERPRISE DENTAL HIGH-TECH</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= FLOATING WHATSAPP BUTTON ================= -->
+    <a href="https://wa.me/523312498855?text=Hola%20Dr.%20Jorge%20Mart%C3%ADnez,%20quisiera%20pedir%20informes%20para%20una%20cita" 
+       target="_blank" 
+       rel="noopener" 
+       aria-label="Contactar por WhatsApp"
+       class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-green-500 hover:bg-green-400 text-slate-950 flex items-center justify-center shadow-2xl shadow-green-500/50 transform hover:scale-110 active:scale-95 transition-all">
+        <i class="fa-brands fa-whatsapp text-3xl text-white"></i>
+        <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-brand-accent animate-ping"></span>
+    </a>
+
+    <!-- ================= MAIN JAVASCRIPT ANIMATIONS & INTERACTION LOGIC ================= -->
+    <script>
+        // 1. PRELOADER TIMING LOGIC
+        window.addEventListener('load', () => {
+            const loaderBar = document.getElementById('loader-bar');
+            const preloader = document.getElementById('preloader');
+            
+            loaderBar.style.width = '100%';
+            setTimeout(() => {
+                preloader.classList.add('opacity-0');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                    initGSAPAnimations();
+                }, 700);
+            }, 500);
+
+            document.getElementById('year-span').textContent = new Date().getFullYear();
+        });
+
+        // 2. THREE.JS ENTERPRISE 3D PARTICLES & MOLECULAR GRID IN HERO
+        let scene, camera, renderer, particlesMesh;
+        function initThreeJS() {
+            const container = document.getElementById('hero-3d-container');
+            if(!container) return;
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+
+            renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            // Particles Geometry
+            const particlesCount = 700;
+            const posArray = new Float32Array(particlesCount * 3);
+            for(let i = 0; i < particlesCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 12;
+            }
+
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 0.025,
+                color: 0x00D2FF,
+                transparent: true,
+                opacity: 0.7,
+                blending: THREE.AdditiveBlending
+            });
+
+            particlesMesh = new THREE.Points(geometry, material);
+            scene.add(particlesMesh);
+
+            // Subtle Mouse Interactive Rotation
+            let mouseX = 0, mouseY = 0;
+            window.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
+                mouseY = (e.clientY / window.innerHeight - 0.5) * 0.5;
+            });
+
+            function animateThree() {
+                requestAnimationFrame(animateThree);
+                particlesMesh.rotation.y += 0.0015;
+                particlesMesh.rotation.x += 0.0008;
+
+                particlesMesh.rotation.y += (mouseX - particlesMesh.rotation.y) * 0.05;
+                particlesMesh.rotation.x += (mouseY - particlesMesh.rotation.x) * 0.05;
+
+                renderer.render(scene, camera);
+            }
+            animateThree();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+        initThreeJS();
+
+        // 3. GSAP SCROLLTRIGGER REVEAL ANIMATIONS
+        function initGSAPAnimations() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Fade in headers and cards
+            gsap.utils.toArray('.glass-panel-hover').forEach((card, index) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                    },
+                    y: 50,
+                    opacity: 0,
+                    duration: 0.8,
+                    delay: index * 0.1,
+                    ease: "power3.out"
+                });
+            });
+
+            // Counters increment animation
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseFloat(counter.getAttribute('data-target'));
+                gsap.to(counter, {
+                    scrollTrigger: {
+                        trigger: counter,
+                        start: "top 90%",
+                    },
+                    innerHTML: target,
+                    duration: 2,
+                    snap: { innerHTML: 0.1 },
+                    ease: "power2.out"
+                });
+            });
+        }
+
+        // 4. INTERACTIVE BEFORE / AFTER SLIDER LOGIC
+        const sliderContainer = document.getElementById('before-after-container');
+        const beforeImageWrap = document.getElementById('before-image-wrap');
+        const sliderHandle = document.getElementById('slider-handle');
+
+        if(sliderContainer) {
+            let isDragging = false;
+
+            const updateSlider = (x) => {
+                const rect = sliderContainer.getBoundingClientRect();
+                let position = (x - rect.left) / rect.width;
+                if(position < 0) position = 0;
+                if(position > 1) position = 1;
+
+                const percentage = position * 100;
+                beforeImageWrap.style.width = `${percentage}%`;
+                sliderHandle.style.left = `${percentage}%`;
+            };
+
+            sliderContainer.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                updateSlider(e.clientX);
+            });
+
+            window.addEventListener('mouseup', () => isDragging = false);
+            window.addEventListener('mousemove', (e) => {
+                if(!isDragging) return;
+                updateSlider(e.clientX);
+            });
+
+            // Touch device events
+            sliderContainer.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                updateSlider(e.touches[0].clientX);
+            });
+            window.addEventListener('touchend', () => isDragging = false);
+            window.addEventListener('touchmove', (e) => {
+                if(!isDragging) return;
+                updateSlider(e.touches[0].clientX);
+            });
+        }
+
+        // 5. MOBILE MENU TOGGLE LOGIC
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        if(mobileBtn) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // 6. WHATSAPP FORM SUBMISSION INTERCEPTOR
+        const form = document.getElementById('whatsapp-form');
+        if(form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('form-name').value;
+                const phone = document.getElementById('form-phone').value;
+                const service = document.getElementById('form-service').value;
+                const time = document.getElementById('form-time').value;
+                const message = document.getElementById('form-message').value;
+
+                // Confetti celebration animation
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+
+                const textMessage = `Hola Dr. Jorge Martínez, quisiera agendar una consulta:%0A%0A` +
+                    `*Nombre:* ${encodeURIComponent(name)}%0A` +
+                    `*Teléfono:* ${encodeURIComponent(phone)}%0A` +
+                    `*Servicio:* ${encodeURIComponent(service)}%0A` +
+                    `*Horario:* ${encodeURIComponent(time)}%0A` +
+                    `*Mensaje:* ${encodeURIComponent(message || 'Sin mensaje adicional')}`;
+
+                setTimeout(() => {
+                    window.open(`https://wa.me/523312498855?text=${textMessage}`, '_blank');
+                }, 800);
+            });
+        }
+
+        // Header Background Solidify on Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if(window.scrollY > 50) {
+                header.classList.add('py-2');
+            } else {
+                header.classList.remove('py-2');
+            }
+        });
+    </script>
+</body>
+</html>
